@@ -1,0 +1,422 @@
+\documentclass[10pt,landscape]{article}
+\usepackage{multicol}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[landscape]{geometry}
+\usepackage{hyperref}
+
+% To make this come out properly in landscape mode, do one of the following
+% 1.
+%  pdflatex latexsheet.tex
+%
+% 2.
+%  latex latexsheet.tex
+%  dvips -P pdf  -t landscape latexsheet.dvi
+%  ps2pdf latexsheet.ps
+
+
+% If you're reading this, be prepared for confusion.  Making this was
+% a learning experience for me, and it shows.  Much of the placement
+% was hacked in; if you make it better, let me know...
+
+
+% 2008-04
+% Changed page margin code to use the geometry package. Also added code for
+% conditional page margins, depending on paper size. Thanks to Uwe Ziegenhagen
+% for the suggestions.
+
+% 2006-08
+% Made changes based on suggestions from Gene Cooperman. <gene at ccs.neu.edu>
+
+
+% To Do:
+% \listoffigures \listoftables
+% \setcounter{secnumdepth}{0}
+
+
+% This sets page margins to .5 inch if using letter paper, and to 1cm
+% if using A4 paper. (This probably isn't strictly necessary.)
+% If using another size paper, use default 1cm margins.
+\ifthenelse{\lengthtest { \paperwidth = 11in}}
+	{ \geometry{top=.5in,left=.5in,right=.5in,bottom=.5in} }
+	{\ifthenelse{ \lengthtest{ \paperwidth = 297mm}}
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+		{\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} }
+	}
+
+% Turn off header and footer
+\pagestyle{empty}
+ 
+
+% Redefine section commands to use less space
+\makeatletter
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+
+% Define BibTeX command
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+
+% Don't print section numbers
+\setcounter{secnumdepth}{0}
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+
+
+% -----------------------------------------------------------------------
+
+\begin{document}
+
+\raggedright
+\footnotesize
+\begin{multicols}{3}
+
+
+% multicol parameters
+% These lengths are set only within the two main columns
+%\setlength{\columnseprule}{0.25pt}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+
+\begin{center}
+     \Large{\textbf{LARICS Code Standard Cheat Sheet}} \\
+\end{center}
+
+\section{Naming conventions}
+\begin{tabular}{@{}ll@{}}
+	Types           & \verb!Line!, \verb!SavingsAccount! \\
+	Variable names  & \verb!line!, \verb!savingsAccount! \\
+	Named constants & \verb!MAX_ITERATIONS!, \verb!PI! \\
+	Functions       & \verb!getName()!, \verb!computeTotalWidth()! \\
+	Namespaces      & \verb!model::analyzer!, \verb!std::cout()! \\
+	Templates       & \verb!template<class T>! // use one letter\\
+	Abreviations	& \verb!exportHtmlSource();! // NOT: \verb!HTML! \\
+	and acronyms    & \verb!openDvd();! // NOT: \verb!openDVD();! \\
+	% Section 3.10??
+	Private class   & \verb!private:! // Should go with underscore \\
+	members         & \verb!  int length_;! \\
+	Generic vars    & \verb!Point startPoint, endPoint;! \\
+	Method name     & \verb!line.getLength();! \\ 
+	                & \hspace{0.5cm} NOT: \verb!line.getLineLength();! \\	
+\end{tabular}
+
+\subsection{Specific naming conventions}
+\begin{tabular}{@{}ll@{}}
+	Get and set     & \verb!employee.getName();! \\
+	                & \verb!employee.setName(someName);! \\
+	                & \verb!matrix.getElement(2, 4);! \\
+	                & \verb!matrix.setElement(2, 4, value);! \\
+	                & \\
+	Term compute    & \verb!valueSet->computeAverage();! \\
+	                & \verb!matrix->computeInverse();! \\
+	Term find       & \verb!vertex.findNearest();! \\
+	                & \verb!matrix.findMinElement();! \\
+	Term initialize & \verb!printer.initializeFontSet();! \\
+	                & \\
+	GUI with compo- & \verb!mainWindow!, \verb!widthScale!, \verb!loginText!, \\
+	nent suffix     & \verb!leftScrollbar!, \verb!minLabel!, \verb!yesToggle! \\
+	                & \\
+	Plurals         & \verb!vector<Point> points;!, \verb!int values[];! \\
+	Objects number  & \verb!nPoints!, \verb!nLines! // Use n prefix\\
+	Entity number   & \verb!tableNo!, \verb!employeeNo! // Use No suffix\\
+	                & \\
+	Iterators should& \verb!for (int i=0; i < nTables); i++) {!\\ 
+	be i, j, k...   & \hspace{0.5cm} \verb!*statements*! \\
+	                & \verb!}!\\
+	is prefix for   & \verb!isSet!, \verb!isVisible!, \verb!isFinished!, \\
+	bool methods    & \verb!isFound!, \verb!isOpen! \\
+	                & \\
+	% Section 3.27?
+	Avoid           & \verb!computeAverage();! // NOT: \verb!compAvg();! \\
+	abbreviations   & \\ 
+	Exceptions for  & \verb!HypertextMarkupLanguage! instead of \verb!html! \\
+	known phrases   & \verb!CentralProcessingUnit! instead of \verb!cpu! \\
+	                & \verb!PriceEarningRatio! instead of \verb!pe! \\
+	                & etc. \\
+	Avoid naming    & \verb!Line *line;! // NOT: \verb!Line *pline;! \\
+	pointers        &                    // NOT: \verb!Line *linePtr;! \\
+	                & \\
+	Avoid negated   & \verb!bool isError;! // NOT: \verb!isNoError;! \\
+	bool            & \verb!bool isFound;! // NOT: \verb!isNotFound;! \\
+	                & \\
+\end{tabular} \\
+
+\begin{tabular}{@{}ll@{}}
+	Prefix common   & \verb!enum Color{! \\
+	type in enum    & \hspace{0.2cm} \verb!COLOR_RED! \\
+	                & \hspace{0.2cm} \verb!COLOR_GREEN! \\
+	                & \hspace{0.2cm} \verb!COLOR_BLUE! \\
+	                & \verb!};! \\
+	                & \\
+	Exception class & \verb!class AccessException! \\
+	suffix          & \verb!{! \\
+	                & \hspace{0.2cm} \verb!:! \\
+	                & \verb!}! \\
+\end{tabular}
+
+\section{Files}
+\subsection{Source Files}
+\begin{tabular}{@{}ll@{}}
+	Header .h and  & \verb!MyClass.cpp!, \verb!MyClass.h! \\
+	source .cpp    & API in .h, definitions in .cpp file \\
+	               & \\
+	Aligned        & \verb!totalSum = a + b + c + ! \\
+	split          & \verb!           d + e;! \\
+	               & \verb!function(param1, param2,! \\
+	               & \verb!         param3);! \\
+	               & \verb!for (int tableNo = 0; tableNo < nTables;! \\
+	               & \verb!     tableNo += tableStep)! \\
+\end{tabular}
+
+\subsection{Include files and statements}
+\begin{tabular}{@{}ll@{}}
+	Include guards & \verb!#ifndef COM_COMPANY_MODULE_CLASSNAME_H! \\
+	               & \verb!#define COM_COMPANY_MODULE_CLASSNAME_H! \\
+	               & \verb!...! \\
+	               & \verb!#endif COM_COMPANY_MODULE_CLASSNAME_H! \\
+	               & \\
+	Group and sort & \verb!#include<fstream>! \\
+	include        & \verb!#include<iomanip>! \\
+	statements     & \\
+	               & \verb!#include<qt/qbutton.h>! \\
+	               & \verb!#include<qt/qtextfield.h>! \\
+	               & \\
+	               & \verb!#include "com/company/ui/BoxDialog.h"! \\
+	               & \verb!#include "com/company/ui/MainWindow.h"! \\
+	               & \\
+\end{tabular}
+
+\section{Statements}
+\subsection{Types}
+\begin{tabular}{@{}ll@{}}
+	Class layout  & \verb!Class MyClass! \\
+	              & \verb!{! \\
+	              & \hspace{0.2cm} \verb!public:! \\
+	              & \hspace{0.2cm} \verb!protected:! \\
+	              & \hspace{0.2cm} \verb!private:! \\
+	              & \verb!};! \\
+	              & \\
+	Use explicit  & \verb!floatValue = static_cast<float>(intValue);! \\
+	conversions   & NOT: \verb!floatValue = intValue;!\\
+\end{tabular}
+
+\subsection{Variables}
+- initialize variables upon declaration, if unable leave it uninitialized rather than initialized to some phony value. \\
+- no global variables or functions \\
+\begin{tabular}{@{}ll@{}}
+	Pointers and  & \verb!float *x;! // NOT: \verb!float* x;! \\
+	references    & \verb!int &x;! // NOT: \verb!int& x;! \\
+	              & \\
+	Implicit test & \texttt{if (nLines != 0)} // NOT: \verb!if (nLines)! \\
+	for 0         & \texttt{if (value != 0.0)} // NOT: \verb!if (value)! \\
+\end{tabular}
+
+\subsection{Loops}
+\begin{tabular}{@{}ll@{}}
+	Only put loop & \verb!sum = 0;! \\
+	control       & \verb!for (i = 0; i < 100; i++)! \\
+	statements in & \hspace{0.2cm} \verb!sum += value[i]! \\
+	for loop      & \\
+	NOT:          & \verb!for (i = 0, sum = 0; i < 100; i++)! \\
+	              & \hspace{0.2cm} \verb!sum += value[i]! \\
+	              & \\
+	Init loop vars& \verb!isDone = false;! \\
+	just before   & \texttt{while (!isDone) \{} \\ 
+	loop          & \hspace{0.2cm} \verb!*statements*! \\
+	              & \verb!}! \\
+	              & \\
+	Infinite loop & \verb!while(true)! // Use only this form \\
+\end{tabular} \\
+
+-avoid \verb!do-while! loops when possible \\
+-avoid \verb!break! and \verb!continue! when possible \\
+
+\subsection{Conditionals}
+-avoid complex conditional expressions. Use temporary \verb!bool! variables instead:
+\begin{verbatim}
+	bool isFinished = (elementNo < 0) || (elementNo > maxElement);
+	bool isRepeatedEntry = elementNo == lastElement;
+	if (isFinished || isRepeatedEntry) {
+  	  :
+	}
+\end{verbatim}
+
+\begin{tabular}{@{}ll@{}}
+	Nominal case  & \verb!bool isOk = readFile(fileName);! \\
+	and exception & \verb!if (isOk) {! \\
+	              & \hspace{0.2cm} \verb!*nominal case*! \\
+	              & \verb!}! \\
+	              & \verb!else {! \\
+	              & \hspace{0.2cm} \verb!*exception*! \\
+	              & \verb!}! \\
+	              & \\
+	Allow line    & \verb!if (isDone)! // NOT: \verb!if (isDone) doCleanup();! \\
+	break         & \hspace{0.2cm} \verb!doCleanup();! \\
+	              & \\
+	Avoid         & \verb!File *fileHandle = open(fileName, "w");! \\
+	executable    & \texttt{if (!fileHandle)\{\}} \\
+	statements    & // NOT: \\
+	in conditions & \texttt{if (!(fileHandle = open(fileName, "w"))) \{\}} \\
+	              & \\
+\end{tabular}
+
+\subsection{Miscellaneous}
+-numbers other than 0 and 1 should be named constants.\\
+
+\begin{tabular}{@{}ll@{}}
+	Floating point& \verb!double total = 0.0;! // NOT: \verb!double total = 0;! \\
+	notation      & \verb!double sum = 3.0e8;! // NOT: \verb!double sum = 3e8;! \\
+	              & \verb!double sum = (a + b) * 10.0;! \\
+	              & \verb!double total = 0.5;! // NOT: \verb!double total = .5;! \\
+	              & \\
+\end{tabular}
+-never use \verb!goto! statement \\
+-use \verb!0! instead of \verb!NULL! \\
+
+\section{Layout and Comments}
+\subsection{Layout}
+-basic indentation should be 2. \\
+
+\begin{tabular}{@{}ll@{}}
+	Loops: while  & \texttt{while (!done) \{ } \\
+	              & \hspace{0.2cm} \verb!doSomething();! \\
+	              & \hspace{0.2cm} \verb!done = moreToDo();! \\
+	              & \verb!}! \\
+	              & \\
+	      do-while& \verb!do {! \\
+	              & \verb!*statements*;! \\
+	              & \verb!} while (condition);! \\
+	              & \\
+	       for    & \verb!for (initialization; condition; update) {! \\
+	              & \hspace{0.2cm} \verb!*statements*;! \\
+	              & \verb!}! \\
+	              & \\
+	If statements & \verb!if (condition) {! \\
+	              & \hspace{0.2cm} \verb!*statements*;! \\
+	              & \verb!}! \\
+	              & \verb!else if (condition) {! \\
+	              & \hspace{0.2cm} \verb!*statements*;! \\
+	              & \verb!}! \\
+	              & \verb!else {! \\
+	              & \hspace{0.2cm} \verb!*statements*;! \\
+	              & \verb!}! \\
+	              & \\
+	One statement & \verb!if (condition)! \\
+	in if         & \hspace{0.2cm} \verb!*statement*;! \\
+	              & \\
+	Switch case   & \verb!switch (condition) {! \\
+	              & \hspace{0.2cm} \verb!case A :! \\
+	              & \hspace{0.4cm} \verb!*statements*;! \\
+	              & \hspace{0.4cm} \verb!// Fallthrough! \\
+	              & \\
+	              & \hspace{0.2cm} \verb!case B :! \\
+	              & \hspace{0.4cm} \verb!*statements*;! \\
+	              & \hspace{0.4cm} \verb!break;! \\
+	              & \\
+	              & \hspace{0.2cm} \verb!default : ! \\
+	              & \hspace{0.4cm} \verb!*statements*;! \\
+	              & \hspace{0.4cm} \verb!break;! \\
+	              & \verb!}! \\
+	              & \\
+	Functions and & \verb!void someMethod()! \\
+	methods       & \verb!{! \\
+	              & \hspace{0.2cm} \verb!*function code*;! \\
+	              & \verb!}! \\
+	              & \\
+	 Try-catch    & \verb!try {! \\
+	              & \hspace{0.2cm} \verb!*statements*;! \\
+	              & \verb!}! \\
+	              & \verb!catch (Exception& exception) {! \\
+	              & \hspace{0.2cm} \verb!*statements*;! \\
+	              & \verb!}! \\
+	              & \\
+\end{tabular}
+
+\begin{tabular}{@{}ll@{}}
+	Class layout  & \verb!Class MyClass! \\
+	              & \verb!{! \\
+	              & \hspace{0.2cm} \verb!public:! \\
+	              & \hspace{0.2cm} \verb!protected:! \\
+	              & \hspace{0.2cm} \verb!private:! \\
+	              & \verb!};! \\
+	              & \\
+	Return type   & \verb!void! \\
+	can be put    & \verb!MyClass::myMethod(void)! \\
+	above function& \verb!{! \\
+	              & \hspace{0.2cm} \verb!*class body*! \\
+	              & \verb!}! \\
+	              & \\
+\end{tabular}
+
+\subsection{White Space}
+- Conventional operators should be surrounded by a space character. \\
+- C++ reserved words should be followed by a white space. \\
+- Commas should be followed by a white space. \\
+- Colons should be surrounded by white space. \\
+- Semicolons in for statments should be followed by a space character. \\
+
+
+\begin{tabular}{@{}ll@{}}
+	Operators     & \verb!a = (b + c) * d;! // NOT: \verb!a=(b+c)*d;! \\
+	Loops         & \verb!while (true)! // NOT: \verb!while(true)! \\
+	              & \verb!for (i = 0; i < 4; i++)! \\ 
+	              & NOT: \verb!for(i=0;i<4;i++)!\\
+	Functions     & \verb!min(a, b, c, d);! // NOT \verb!min(a,b,c,d);! \\
+	Case          & \verb!case 100 : ! // NOT \verb!case 100:! \\
+	
+\end{tabular}
+
+\subsubsection{Separating logical units}
+- Use one blank space to separate, multiple if it enhances readability
+\begin{verbatim}
+Matrix4x4 matrix = new Matrix4x4();
+
+double cosAngle = Math.cos(angle);
+double sinAngle = Math.sin(angle);
+
+matrix.setElement(1, 1,  cosAngle);
+matrix.setElement(1, 2,  sinAngle);
+matrix.setElement(2, 1, -sinAngle);
+matrix.setElement(2, 2,  cosAngle);
+
+multiply(matrix);
+
+\end{verbatim}
+
+\begin{verbatim}
+if      (a == lowValue)    compueSomething();
+else if (a == mediumValue) computeSomethingElse();
+else if (a == highValue)   computeSomethingElseYet();
+
+value = (potential        * oilDensity)   / constant1 +
+        (depth            * waterDensity) / constant2 +
+        (zCoordinateValue * gasDensity)   / constant3;
+
+minPosition     = computeDistance(min,     x, y, z);
+averagePosition = computeDistance(average, x, y, z);
+
+switch (value) {
+  case PHASE_OIL   : strcpy(phase, "Oil");   break;
+  case PHASE_WATER : strcpy(phase, "Water"); break;
+  case PHASE_GAS   : strcpy(phase, "Gas");   break;
+}
+\end{verbatim}
+
+
+\end{multicols}
+\end{document}
