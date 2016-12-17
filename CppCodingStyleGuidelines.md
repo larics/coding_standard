@@ -20,6 +20,8 @@
   * [5.5 Miscellaneous](#StatementsMiscellaneous)
 - [6 Layout and Comments](#LayoutAndComments)
   * [6.1 Layout](#LayoutAndCommentsLayout)
+  * [6.2 White Space](#LayoutAndCommentsWhiteSpace)
+  * [6.3 White Comments](#LayoutAndCommentsComments)
 - [7 References](#references)
 
 
@@ -477,52 +479,153 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 
 ### <a name="LayoutAndCommentsLayout"></a> 6.1 Layout
 
-|<span style="background-color:lightblue">  </span>|
+|<span style="background-color:lightblue"> 71. Basic indentation should be 2. </span>|
 |:------------- |
-|<pre> <br> </pre>|
-||
+|<pre>for (i = 0; i < nElements; i++) <br>  a[i] = 0; </pre>|
+|Indentation of 1 is too small to emphasize the logical layout of the code. Indentation larger than 4 makes deeply nested code difficult to read and increases the chance that the lines must be split. Choosing between indentation of 2, 3 and 4,  2 and 4 are the more common, and 2 chosen to reduce the chance of splitting code lines.|
 <br>
 
-|<span style="background-color:lightblue">  </span>|
+|<span style="background-color:lightblue"> 72. Block layout should be as illustrated in example 1 below (recommended) or example 2, and must not be as shown in example 3 [[4](#reference4)]. Function and class blocks must use the block layout of example 2. </span>|
 |:------------- |
-|<pre> <br> </pre>|
-||
+|<pre>// example 1 <br>while (!done) { <br>  doSomething(); <br>  done = moreToDo(); <br>} <br><br>// example 2 <br>while (!done) <br>{ <br>  doSomething(); <br>  done = moreToDo(); <br>} <br><br>//NOT: example 3 <br>while (!done) <br>  { <br>    doSomething(); <br>    done = moreToDo(); <br>  } </pre>|
+|Example 3 introduces an extra indentation level which doesn't emphasize the logical structure of the code as clearly as examples 1 and 2. We don't enforce either example 1 or 2, just be consistent in your code.|
 <br>
 
-|<span style="background-color:lightblue">  </span>|
+|<span style="background-color:lightblue"> 73. The class declarations should have the following form: </span>|
 |:------------- |
-|<pre> <br> </pre>|
-||
+|<pre>class SomeClass : public BaseClass <br>{ <br>public: <br>  ... <br> <br>protected: <br>  ... <br><br>private: <br>  ... <br>} </pre>|
+|This follows partly from the general block rule above.|
 <br>
 
-|<span style="background-color:lightblue">  </span>|
+|<span style="background-color:lightblue"> 74. Method definitions should have the following form: </span>|
 |:------------- |
-|<pre> <br> </pre>|
-||
+|<pre>void someMethod() <br>{ <br>  ... <br>} </pre>|
+|This follows from the general block rule above.|
 <br>
 
-|<span style="background-color:lightblue">  </span>|
+|<span style="background-color:lightblue"> 75. The *if-else* class of statements should have the following form: </span>|
 |:------------- |
-|<pre> <br> </pre>|
-||
+|<pre>if (condition) { <br>  statements; <br>} <br> <br>if (condition) { <br>  statements; <br>} <br>else { <br>   statements; <br>} <br> <br>if (condition) { <br>  statements; <br>} <br>else if (condition) { <br>  statements; <br>} <br>else { <br>  statements; <br>} </pre>|
+|This follows partly from the general block rule above. However, it might be discussed if an else clause should be on the same line as the closing bracket of the previous if or else clause: <pre>  if (condition) { <br>    statements; <br>  } else { <br>    statements; <br>  } </pre> <br>The chosen approach is considered better in the way that each part of the if-else statement is written on separate lines of the file. This should make it easier to manipulate the statement, for instance when moving else clauses around.|
 <br>
 
-|<span style="background-color:lightblue">  </span>|
+|<span style="background-color:lightblue"> 76. A *for* statement should have the following form: </span>|
 |:------------- |
-|<pre> <br> </pre>|
-||
+|<pre>for (initialization; condition; update) { <br>  statements; <br>} </pre>|
+|This follows from the general block rule above.|
 <br>
 
-|<span style="background-color:lightblue">  </span>|
+|<span style="background-color:lightblue"> 77. An empty for statement should have the following form:  </span>|
 |:------------- |
-|<pre> <br> </pre>|
-||
+|<pre>for (initialization; condition; update) <br>  ; </pre>|
+|This emphasizes the fact that the for statement is empty and it makes it obvious for the reader that this is intentional. Empty loops should be avoided however.|
 <br>
 
-|<span style="background-color:lightblue">  </span>|
+|<span style="background-color:lightblue"> 78. A while statement should have the following form: </span>|
 |:------------- |
-|<pre> <br> </pre>|
+|<pre>while (condition) { <br>  statements; <br>} </pre>|
+|This follows from the general block rule above.|
+<br>
+
+|<span style="background-color:lightblue"> 79. A *do-while* statement should have the following form: </span>|
+|:------------- |
+|<pre>do { <br>  statements; <br>} while (condition); </pre>|
+|This follows from the general block rule above. As stated before, we highly recommend not using *do-while loops*|
+<br>
+
+|<span style="background-color:lightblue"> 80. A *switch* statement should have the following form: </span>|
+|:------------- |
+|<pre>switch (condition) { <br>  case ABC : <br>    statements; <br>    // Fallthrough <br> <br>  case DEF : <br>    statements; <br>    break; <br> <br>  case XYZ : <br>    statements; <br>    break; <br> <br>  default : <br>    statements; <br>    break; <br>} </pre>|
+|Note that each *case* keyword is indented relative to the switch statement as a whole. This makes the entire switch statement stand out. Note also the extra space before the : character. The explicit **Fallthrough** comment should be included whenever there is a case statement without a break statement. Leaving the break out is a common error, and it must be made clear that it is intentional when it is not there.|
+<br>
+
+|<span style="background-color:lightblue"> 81. A *try-catch* statement should have the following form: </span>|
+|:------------- |
+|<pre>try { <br>  statements; <br>} <br>catch (Exception& exception) { <br>  statements; <br>} </pre>|
+|This follows partly from the general block rule above. The discussion about closing brackets for *if-else* statements apply to the *try-catch* statments.|
+<br>
+
+|<span style="background-color:lightblue"> 82. Single statement *if-else*, *for* or *while* statements can be written without brackets. </span>|
+|:------------- |
+|<pre>if (condition) <br>  statement; <br> <br>while (condition) <br>  statement; <br> <br>for (initialization; condition; update) <br>  statement; </pre>|
+|It is a common recommendation that brackets should always be used in all these cases. However, brackets are in general a language construct that groups several statements. Brackets are per definition superfluous on a single statement. A common argument against this syntax is that the code will break if an additional statement is added without also adding the brackets. In general however, code should never be written to accommodate for changes that *might* arise.|
+<br>
+
+|<span style="background-color:lightblue"> 83. The function return type can be put in the left column immediately above the function name. </span>|
+|:------------- |
+|<pre>void <br>MyClass::myMethod(void) <br>{ <br>  : <br>} </pre>|
+|This makes it easier to spot function names within a file since they all start in the first column.|
+<br>
+
+### <a name="LayoutAndCommentsWhiteSpace"></a> 6.2 White Space
+
+|<span style="background-color:lightblue"> 84.<ul><li>Conventional operators should be surrounded by a space character. </li> <li>C++ reserved words should be followed by a white space. </li> <li>Commas should be followed by a white space. </li> <li>Colons should be surrounded by white space.</li>  <li>Semicolons in for statments should be followed by a space character.</li> </ul> </span>|
+|:------------- |
+|<pre>a = (b + c) * d; // NOT: a=(b+c)*d <br> <br>while (true)   // NOT: while(true) <br>{ <br>  ... <br> <br>doSomething(a, b, c, d);  // NOT: doSomething(a,b,c,d); <br> <br>case 100 :  // NOT: case 100: <br> <br>for (i = 0; i < 10; i++) {  // NOT: for(i=0;i<10;i++){ <br>  ...</pre>|
+|Makes the individual components of the statements stand out. Enhances readability. It is difficult to give a complete list of the suggested use of whitespace in C++ code. The examples above however should give a general idea of the intentions.|
+<br>
+
+|<span style="background-color:lightblue"> 85. Method names can be followed by a white space when it is followed by another name. </span>|
+|:------------- |
+|<pre>doSomething(currentFile); </pre>|
+|Makes the individual names stand out. Enhances readability. When no name follows, the space can be omitted (`doSomething()`) since there is no doubt about the name in this case. <br> <br>An alternative to this approach is to require a space after the opening parenthesis. Those that adhere to this standard usually also leave a space before the closing parentheses: `doSomething( currentFile );`. This do make the individual names stand out as is the intention, but the space before the closing parenthesis is rather artificial, and without this space the statement looks rather asymmetrical (`doSomething( currentFile);`).|
+<br>
+
+|<span style="background-color:lightblue"> 86. Logical units within a block should be separated by one blank line. </span>|
+|:------------- |
+|<pre>Matrix4x4 matrix = new Matrix4x4(); <br> <br>double cosAngle = Math.cos(angle); <br>double sinAngle = Math.sin(angle); <br> <br>matrix.setElement(1, 1,  cosAngle); <br>matrix.setElement(1, 2,  sinAngle); <br>matrix.setElement(2, 1, -sinAngle); <br>matrix.setElement(2, 2,  cosAngle); <br> <br>multiply(matrix); </pre>|
+|Enhance readability by introducing white space between logical units of a block.|
+<br>
+
+|<span style="background-color:lightblue"> 87. Methods should be separated by three blank lines. </span>|
+|:------------- |
 ||
+|By making the space larger than space within a method, the methods will stand out within the class.|
+<br>
+
+|<span style="background-color:lightblue"> 88. Variables in declarations can be left aligned. </span>|
+|:------------- |
+|<pre>AsciiFile* file; <br>int        nPoints; <br>float      x, y; </pre>|
+|Enhance readability. The variables are easier to spot from the types by alignment.|
+<br>
+
+|<span style="background-color:lightblue"> 89. Use alignment wherever it enhances readability. </span>|
+|:------------- |
+|<pre>if      (a == lowValue)    compueSomething(); <br>else if (a == mediumValue) computeSomethingElse(); <br>else if (a == highValue)   computeSomethingElseYet(); <br> <br>value = (potential        * oilDensity)   / constant1 + <br>        (depth            * waterDensity) / constant2 + <br>        (zCoordinateValue * gasDensity)   / constant3; <br> <br>minPosition     = computeDistance(min,     x, y, z); <br>averagePosition = computeDistance(average, x, y, z); <br> <br>switch (value) { <br>  case PHASE_OIL   : strcpy(phase, "Oil");   break; <br>  case PHASE_WATER : strcpy(phase, "Water"); break; <br>  case PHASE_GAS   : strcpy(phase, "Gas");   break; </pre>|
+|There are a number of places in the code where white space can be included to enhance readability even if this violates common guidelines. Many of these cases have to do with code alignment. General guidelines on code alignment are difficult to give, but the examples above should give a general clue.|
+<br>
+
+
+### <a name="LayoutAndCommentsComments"></a> 6.3 Comments
+
+|<span style="background-color:lightblue"> 90. Tricky code should not be commented but rewritten! [[1](#reference1)] </span>|
+|:------------- |
+||
+|In general, the use of comments should be minimized by making the code self-documenting by appropriate name choices and an explicit logical structure.|
+<br>
+
+|<span style="background-color:lightblue"> 91. All comments should be written in English [2]. </span>|
+|:------------- |
+||
+|In an international environment English is the preferred language.|
+<br>
+
+|<span style="background-color:lightblue"> 92. Use *//* for all comments, including multi-line comments. </span>|
+|:------------- |
+|<pre>// Comment spanning <br>// more than one line. </pre>|
+|Since multilevel C-commenting is not supported, using // comments ensure that it is always possible to comment out entire sections of a file using `/* */` for debugging purposes etc. <br> <br>There should be a space between the "//" and the actual comment, and comments should always start with an upper case letter and end with a period.|
+<br>
+
+|<span style="background-color:lightblue"> 93. Comments should be included relative to their position in the code. [[1](#reference1)] </span>|
+|:------------- |
+|<pre>while (true) {       // NOT:  while (true) { <br>  // Do something             // Do something <br>  something();                  something(); <br>}                             } </pre>|
+|This is to avoid that the comments break the logical structure of the program.|
+<br>
+
+|<span style="background-color:lightblue"> 94. Class and method header comments should follow the JavaDoc conventions. </span>|
+|:------------- |
+||
+|Regarding standardized class and method documentation the Java development community is more mature than the C/C++ one. This is due to the standard automatic Javadoc tool that is part of the development kit and that help producing high quality hypertext documentation from these comments. <br> <br>There are Javadoc-like tools available also for C++. These follows the same tagging syntax as Javadoc. See for instance [Doxygen](http://www.stack.nl/~dimitri/doxygen/index.html).|
 <br>
 
 ## <a name="references"></a> 7 References
