@@ -21,7 +21,7 @@
 - [6 Layout and Comments](#LayoutAndComments)
   * [6.1 Layout](#LayoutAndCommentsLayout)
   * [6.2 White Space](#LayoutAndCommentsWhiteSpace)
-  * [6.3 White Comments](#LayoutAndCommentsComments)
+  * [6.3 Comments](#LayoutAndCommentsComments)
 - [7 References](#references)
 
 
