@@ -76,9 +76,9 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 |Common practice in the C++ development community.| 
 <br>
 
-|<span style="background-color:lightblue"> 4. Variable names must be in mixed case starting with lower case. </span>|
+|<span style="background-color:lightblue"> 4. Variable names must be in snake_case starting with lower case. </span>|
 |:------------- |
-|<pre> line, savingsAccount </pre>|
+|<pre> line, savings_account </pre>|
 |Common practice in the C++ development community. Makes variables easy to distinguish from types, and effectively resolves potential naming collision as in the declaration Line line;|
 <br>
 
@@ -128,13 +128,13 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 
 |<span style="background-color:lightblue"> 12. Generic variables should have the same name as their type. </span>|
 |:------------- |
-|<pre>void setTopic(Topic* topic) // NOT: void setTopic(Topic* value) <br>                           // NOT: void setTopic(Topic* aTopic) <br>                           // NOT: void setTopic(Topic* t) <br><br>void connect(Database* database) // NOT: void connect(Database* db) <br>                                // NOT: void connect (Database* oracleDB) </pre>|
-|Reduce complexity by reducing the number of terms and names used. Also makes it easy to deduce the type given a variable name only. <br> <br>If for some reason this convention doesn't seem to fit it is a strong indication that the type name is badly chosen. <br> <br>Non-generic variables have a role. These variables can often be named by combining role and type: <pre>Point  startingPoint, centerPoint; <br>Name   loginName;</pre>| 
+|<pre>void setTopic(Topic* topic) // NOT: void setTopic(Topic* value) <br>                           // NOT: void setTopic(Topic* aTopic) <br>                           // NOT: void setTopic(Topic* t) <br><br>void connect(Database* database) // NOT: void connect(Database* db) <br>                                // NOT: void connect (Database* oracle_db) </pre>|
+|Reduce complexity by reducing the number of terms and names used. Also makes it easy to deduce the type given a variable name only. <br> <br>If for some reason this convention doesn't seem to fit it is a strong indication that the type name is badly chosen. <br> <br>Non-generic variables have a role. These variables can often be named by combining role and type: <pre>Point  starting_point, center_point; <br>Name   login_name;</pre>| 
 <br>
 
 |<span style="background-color:lightblue"> 13. All names should be written in English. </span>|
 |:------------- |
-|<pre> fileName;   // NOT: imeDatoteke </pre>|
+|<pre> file_name;   // NOT: ime_datoteke </pre>|
 |English is the preferred language for international development.| 
 <br>
 
@@ -159,7 +159,7 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 
 |<span style="background-color:lightblue"> 18. The term *compute* can be used in methods where something is computed. </span>|
 |:------------- |
-|<pre>valueSet->computeAverage(); <br>matrix->computeInverse(); </pre>|
+|<pre>value_set->computeAverage(); <br>matrix->computeInverse(); </pre>|
 |Give the reader the immediate clue that this is a potentially time-consuming operation, and if used repeatedly, he might consider caching the result. Consistent use of the term enhances readability.|
 <br>
 
@@ -177,7 +177,7 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 
 |<span style="background-color:lightblue"> 21. Variables representing GUI components should be suffixed by the component type name. </span>|
 |:------------- |
-|<pre>mainWindow, propertiesDialog, widthScale, loginText, <br>leftScrollbar, mainForm, fileMenu, minLabel, exitButton, yesToggle etc. </pre>|
+|<pre>main_window, properties_dialog, width_scale, login_text, <br>left_scrollbar, main_form, file_menu, min_label, exit_button, yes_toggle etc. </pre>|
 |Enhances readability since the name gives the user an immediate clue of the type of the variable and thereby the objects resources.|
 <br>
 
@@ -189,14 +189,14 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 
 |<span style="background-color:lightblue"> 23. The prefix *n* should be used for variables representing a number of objects. </span>|
 |:------------- |
-|<pre> nPoints, nLines </pre>|
+|<pre> n_points, n_lines </pre>|
 |The notation is taken from mathematics where it is an established convention for indicating a number of objects.|
 <br>
 
 |<span style="background-color:lightblue"> 24.The suffix *No* should be used for variables representing an entity number. </span>|
 |:------------- |
-|<pre> tableNo, employeeNo </pre>|
-|The notation is taken from mathematics where it is an established convention for indicating an entity number. <br> <br>An elegant alternative is to prefix such variables with an i: `iTable, iEmployee`. This effectively makes them *named iterators*.|
+|<pre> table_no, employee_no </pre>|
+|The notation is taken from mathematics where it is an established convention for indicating an entity number. <br> <br>An elegant alternative is to prefix such variables with an i: `i_table, i_employee`. This effectively makes them *named iterators*.|
 <br>
 
 |<span style="background-color:lightblue"> 25. Iterator variables should be called *i*, *j*, *k* etc. </span>|
@@ -207,8 +207,8 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 
 |<span style="background-color:lightblue"> 26. The prefix *is* should be used for boolean variables and methods. </span>|
 |:------------- |
-|<pre> isSet, isVisible, isFinished, isFound, isOpen </pre>|
-|Common practice in the C++ development community and partially enforced in Java. <br> <br> Using the *is* prefix solves a common problem of choosing bad boolean names like status or `flag. isStatus` or `isFlag` simply doesn't fit, and the programmer is forced to choose more meaningful names. <br> <br> There are a few alternatives to the *is* prefix that fit better in some situations. These are the *has*, *can* and *should* prefixes: <br> `bool hasLicense();` <br>`bool canEvaluate();` <br>`bool shouldSort();`|
+|<pre> is_set, is_visible, is_finished, is_found, is_open </pre>|
+|Common practice in the C++ development community and partially enforced in Java. <br> <br> Using the *is* prefix solves a common problem of choosing bad boolean names like status or `flag. is_status` or `is_flag` simply doesn't fit, and the programmer is forced to choose more meaningful names. <br> <br> There are a few alternatives to the *is* prefix that fit better in some situations. These are the *has*, *can* and *should* prefixes: <br> `bool hasLicense();` <br>`bool canEvaluate();` <br>`bool shouldSort();`|
 <br>
 
 |<span style="background-color:lightblue"> 27. Complement names must be used for complement operations [[1](#reference1)]. </span>|
@@ -225,14 +225,14 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 
 |<span style="background-color:lightblue"> 29. Naming pointers specifically should be avoided. </span>|
 |:------------- |
-|<pre> Line* line; // NOT: Line* pLine; <br>            // NOT: LIne* linePtr; </pre>|
+|<pre> Line* line; // NOT: Line* p_line; <br>            // NOT: Line* line_ptr; </pre>|
 |Many variables in a C/C++ environment are pointers, so a convention like this is almost impossible to follow. Also objects in C++ are often oblique types where the specific implementation should be ignored by the programmer. Only when the actual type of an object is of special significance, the name should emphasize the type.|
 <br>
 
 |<span style="background-color:lightblue"> 30. Negated boolean variable names must be avoided. </span>|
 |:------------- |
-|<pre>bool isError; // NOT: isNoError <br>bool isFound; // NOT: isNotFound </pre>|
-|The problem arises when such a name is used in conjunction with the logical negation operator as this results in a double negative. It is not immediately apparent what `!isNotFound` means.|
+|<pre>bool is_error; // NOT: is_no_error <br>bool is_found; // NOT: is_not_found </pre>|
+|The problem arises when such a name is used in conjunction with the logical negation operator as this results in a double negative. It is not immediately apparent what `!is_not_found` means.|
 <br>
 
 |<span style="background-color:lightblue"> 31. Enumeration constants can be prefixed by a common type name. </span>|
@@ -289,7 +289,7 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 
 |<span style="background-color:lightblue"> 39. The incompleteness of split lines must be made obvious [[1](#reference1)]. </span>|
 |:------------- |
-|<pre>totalSum = a + b + c + <br>           d + e; <br> <br>function(param1, param2, <br>         param3); <br> <br>setText ("Long line split" <br>         "into two parts."); <br> <br>for (int tableNo = 0; tableNo < nTables; <br>     tableNo += tableStep) { <br>  ... <br>}</pre>|
+|<pre>totalSum = a + b + c + <br>           d + e; <br> <br>function(param1, param2, <br>         param3); <br> <br>setText ("Long line split" <br>         "into two parts."); <br> <br>for (int table_no = 0; table_no < n_tables; <br>     table_no += table_step) { <br>  ... <br>}</pre>|
 |Split lines occurs when a statement exceed the 80 column limit given above. It is difficult to give rigid rules for how lines should be split, but the examples above should give a general hint. <br> <br> In general: <br> <br> <ul><li>Break after a comma</li> <li>Break after an operator.</li> <li>Align the new line with the beginning of the expression on the previous line.</li> </ul>|
 <br>
 
@@ -331,7 +331,7 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 
 |<span style="background-color:lightblue"> 45. Type conversions must always be done explicitly. Never rely on implicit type conversion. </span>|
 |:------------- |
-|<pre> floatValue = static_cast<float>(intValue); // NOT: floatValue = intValue; </pre>|
+|<pre> float_value = static_cast<float>(int_value); // NOT: float_value = int_value; </pre>|
 |By this, the programmer indicates that he is aware of the different types involved and that the mix is intentional.|
 <br>
 
@@ -369,7 +369,7 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 
 |<span style="background-color:lightblue"> 53. Implicit test for 0 should not be used other than for boolean variables and pointers. </span>|
 |:------------- |
-|<pre>if (nLines != 0)  // NOT: if (nLines) <br>if (value != 0.0) // NOT: if (value)</pre>|
+|<pre>if (n_lines != 0)  // NOT: if (n_lines) <br>if (value != 0.0) // NOT: if (value)</pre>|
 |It is not necessarily defined by the C++ standard that ints and floats 0 are implemented as binary 0. Also, by using an explicit test the statement gives an immediate clue of the type being tested. <br> <br>It is common also to suggest that pointers shouldn't test implicitly for 0 either, i.e. if (line == 0) instead of if (line). The latter is regarded so common in C/C++ however that it can be used.|
 <br>
 
@@ -389,7 +389,7 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 
 |<span style="background-color:lightblue"> 56. Loop variables should be initialized immediately before the loop. </span>|
 |:------------- |
-|<pre>isDone = false;           // NOT: bool isDone = false; <br>while (!isDone) {         //      : <br>  :                       //      while (!isDone) { <br>}                         //        : <br>                          //      } </pre>|
+|<pre>is_done = false;           // NOT: bool is_done = false; <br>while (!is_done) {         //      : <br>  :                       //      while (!is_done) { <br>}                         //        : <br>                          //      } </pre>|
 ||
 <br>
 
@@ -415,25 +415,25 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 
 |<span style="background-color:lightblue"> 61. Complex conditional expressions must be avoided. Introduce temporary boolean variables instead [[1](#reference1)]. </span>|
 |:------------- |
-|<pre>bool isFinished = (elementNo < 0) &#124;&#124; (elementNo > maxElement); <br>bool isRepeatedEntry = elementNo == lastElement; <br>if (isFinished &#124;&#124; isRepeatedEntry) { <br>  : <br>} <br> <br>// NOT: <br>if ((elementNo < 0) &#124;&#124; (elementNo > maxElement) &#124;&#124; <br>     elementNo == lastElement) { <br>  : <br>} </pre>|
+|<pre>bool is_finished = (element_no < 0) &#124;&#124; (element_no > max_element); <br>bool is_repeated_entry = element_no == last_element; <br>if (is_finished &#124;&#124; is_repeated_entry) { <br>  : <br>} <br> <br>// NOT: <br>if ((element_no < 0) &#124;&#124; (element_no > max_element) &#124;&#124; <br>     element_no == last_element) { <br>  : <br>} </pre>|
 |By assigning boolean variables to expressions, the program gets automatic documentation. The construction will be easier to read, debug and maintain.|
 <br>
 
 |<span style="background-color:lightblue"> 62. The nominal case should be put in the *if*-part and the exception in the *else*-part of an if statement [[1](#reference1)]. </span>|
 |:------------- |
-|<pre>bool isOk = readFile (fileName); <br>if (isOk) { <br>  : <br>} <br>else { <br>  : <br>} </pre>|
+|<pre>bool is_ok = readFile (file_name); <br>if (is_ok) { <br>  : <br>} <br>else { <br>  : <br>} </pre>|
 |Makes sure that the exceptions don't obscure the normal path of execution. This is important for both the readability and performance.|
 <br>
 
 |<span style="background-color:lightblue"> 63. The conditional should be put on a separate line. </span>|
 |:------------- |
-|<pre>if (isDone)       // NOT: if (isDone) doCleanup(); <br>  doCleanup(); </pre>|
+|<pre>if (is_done)       // NOT: if (is_done) doCleanup(); <br>  doCleanup(); </pre>|
 |This is for debugging purposes. When writing on a single line, it is not apparent whether the test is really true or not.|
 <br>
 
 |<span style="background-color:lightblue"> 64. Executable statements in conditionals must be avoided. </span>|
 |:------------- |
-|<pre>File* fileHandle = open(fileName, "w"); <br>if (!fileHandle) { <br>  : <br>} <br> <br>// NOT: <br>if (!(fileHandle = open(fileName, "w"))) { <br>  : <br>}</pre>|
+|<pre>File* file_handle = open(file_name, "w"); <br>if (!file_handle) { <br>  : <br>} <br> <br>// NOT: <br>if (!(file_handle = open(file_name, "w"))) { <br>  : <br>}</pre>|
 |Conditionals with executable statements are just very difficult to read. This is especially true for programmers new to C/C++.|
 <br>
 
@@ -447,7 +447,7 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 
 |<span style="background-color:lightblue"> 66. Floating point constants should always be written with decimal point and at least one decimal. </span>|
 |:------------- |
-|<pre> double total = 0.0;    // NOT:  double total = 0; <br>double speed = 3.0e8;  // NOT:  double speed = 3e8; <br> <br>double sum; <br>: <br>sum = (a + b) * 10.0; </pre>|
+|<pre>double total = 0.0;    // NOT:  double total = 0; <br>double speed = 3.0e8;  // NOT:  double speed = 3e8; <br> <br>double sum; <br>: <br>sum = (a + b) * 10.0; </pre>|
 |This emphasizes the different nature of integer and floating point numbers. Mathematically the two model completely different and non-compatible concepts. <br><br>Also, as in the last example above, it emphasizes the type of the assigned variable (sum) at a point in the code where this might not be evident.|
 <br>
 
@@ -481,7 +481,7 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 
 |<span style="background-color:lightblue"> 71. Basic indentation should be 2. </span>|
 |:------------- |
-|<pre>for (i = 0; i < nElements; i++) <br>  a[i] = 0; </pre>|
+|<pre>for (i = 0; i < n_elements; i++) <br>  a[i] = 0; </pre>|
 |Indentation of 1 is too small to emphasize the logical layout of the code. Indentation larger than 4 makes deeply nested code difficult to read and increases the chance that the lines must be split. Choosing between indentation of 2, 3 and 4,  2 and 4 are the more common, and 2 chosen to reduce the chance of splitting code lines.|
 <br>
 
@@ -567,13 +567,13 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 
 |<span style="background-color:lightblue"> 85. Method names can be followed by a white space when it is followed by another name. </span>|
 |:------------- |
-|<pre>doSomething(currentFile); </pre>|
-|Makes the individual names stand out. Enhances readability. When no name follows, the space can be omitted (`doSomething()`) since there is no doubt about the name in this case. <br> <br>An alternative to this approach is to require a space after the opening parenthesis. Those that adhere to this standard usually also leave a space before the closing parentheses: `doSomething( currentFile );`. This do make the individual names stand out as is the intention, but the space before the closing parenthesis is rather artificial, and without this space the statement looks rather asymmetrical (`doSomething( currentFile);`).|
+|<pre>doSomething(current_file); </pre>|
+|Makes the individual names stand out. Enhances readability. When no name follows, the space can be omitted (`doSomething()`) since there is no doubt about the name in this case. <br> <br>An alternative to this approach is to require a space after the opening parenthesis. Those that adhere to this standard usually also leave a space before the closing parentheses: `doSomething( current_file );`. This do make the individual names stand out as is the intention, but the space before the closing parenthesis is rather artificial, and without this space the statement looks rather asymmetrical (`doSomething( current_file);`).|
 <br>
 
 |<span style="background-color:lightblue"> 86. Logical units within a block should be separated by one blank line. </span>|
 |:------------- |
-|<pre>Matrix4x4 matrix = new Matrix4x4(); <br> <br>double cosAngle = Math.cos(angle); <br>double sinAngle = Math.sin(angle); <br> <br>matrix.setElement(1, 1,  cosAngle); <br>matrix.setElement(1, 2,  sinAngle); <br>matrix.setElement(2, 1, -sinAngle); <br>matrix.setElement(2, 2,  cosAngle); <br> <br>multiply(matrix); </pre>|
+|<pre>Matrix4x4 matrix = new Matrix4x4(); <br> <br>double cos_angle = Math.cos(angle); <br>double sin_angle = Math.sin(angle); <br> <br>matrix.setElement(1, 1,  cos_angle); <br>matrix.setElement(1, 2,  sin_angle); <br>matrix.setElement(2, 1, -sin_angle); <br>matrix.setElement(2, 2,  cos_angle); <br> <br>multiply(matrix); </pre>|
 |Enhance readability by introducing white space between logical units of a block.|
 <br>
 
@@ -585,13 +585,13 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 
 |<span style="background-color:lightblue"> 88. Variables in declarations can be left aligned. </span>|
 |:------------- |
-|<pre>AsciiFile* file; <br>int        nPoints; <br>float      x, y; </pre>|
+|<pre>AsciiFile* file; <br>int        n_points; <br>float      x, y; </pre>|
 |Enhance readability. The variables are easier to spot from the types by alignment.|
 <br>
 
 |<span style="background-color:lightblue"> 89. Use alignment wherever it enhances readability. </span>|
 |:------------- |
-|<pre>if      (a == lowValue)    compueSomething(); <br>else if (a == mediumValue) computeSomethingElse(); <br>else if (a == highValue)   computeSomethingElseYet(); <br> <br>value = (potential        * oilDensity)   / constant1 + <br>        (depth            * waterDensity) / constant2 + <br>        (zCoordinateValue * gasDensity)   / constant3; <br> <br>minPosition     = computeDistance(min,     x, y, z); <br>averagePosition = computeDistance(average, x, y, z); <br> <br>switch (value) { <br>  case PHASE_OIL   : strcpy(phase, "Oil");   break; <br>  case PHASE_WATER : strcpy(phase, "Water"); break; <br>  case PHASE_GAS   : strcpy(phase, "Gas");   break; </pre>|
+|<pre>if      (a == low_value)    compueSomething(); <br>else if (a == medium_value) computeSomethingElse(); <br>else if (a == high_value)   computeSomethingElseYet(); <br> <br>value = (potential        * oil_density)     / constant1 + <br>        (depth            * water_density)   / constant2 + <br>        (z_coordinate_value * gas_density)  / constant3; <br> <br>min_position     = computeDistance(min,     x, y, z); <br>average_position = computeDistance(average, x, y, z); <br> <br>switch (value) { <br>  case PHASE_OIL   : strcpy(phase, "Oil");   break; <br>  case PHASE_WATER : strcpy(phase, "Water"); break; <br>  case PHASE_GAS   : strcpy(phase, "Gas");   break; </pre>|
 |There are a number of places in the code where white space can be included to enhance readability even if this violates common guidelines. Many of these cases have to do with code alignment. General guidelines on code alignment are difficult to give, but the examples above should give a general clue.|
 <br>
 
