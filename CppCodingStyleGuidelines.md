@@ -1,5 +1,7 @@
 #C++ Programming Style Guidelines
 
+This document is copied from [Geotechnical Software Services](http://geosoft.no/development/cppstyle.html) with some changes in style.
+
 ##Table of Contents
 
 - [1 Introduction](#introduction)
