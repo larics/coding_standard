@@ -482,7 +482,7 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 |<span style="background-color:lightblue"> 71. Basic indentation should be 2. </span>|
 |:------------- |
 |<pre>for (i = 0; i < n_elements; i++) <br>  a[i] = 0; </pre>|
-|Indentation of 1 is too small to emphasize the logical layout of the code. Indentation larger than 4 makes deeply nested code difficult to read and increases the chance that the lines must be split. Choosing between indentation of 2, 3 and 4,  2 and 4 are the more common, and 2 chosen to reduce the chance of splitting code lines.|
+|Indentation of 1 is too small to emphasize the logical layout of the code. Indentation larger than 4 makes deeply nested code difficult to read and increases the chance that the lines must be split. Choosing between indentation of 2, 3 and 4,  2 and 4 are the more common, and 2 chosen to reduce the chance of splitting code lines. However, if a file already has indentation different than 2, it is recommended to change the indentation although it is not necessary to do so.|
 <br>
 
 |<span style="background-color:lightblue"> 72. Block layout should be as illustrated in example 1 below (recommended) or example 2, and must not be as shown in example 3 [[4](#reference4)]. Function and class blocks must use the block layout of example 2. </span>|
