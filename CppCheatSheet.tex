@@ -100,7 +100,7 @@
 \section{Naming conventions}
 \begin{tabular}{@{}ll@{}}
 	Types           & \verb!Line!, \verb!SavingsAccount! \\
-	Variable names  & \verb!line!, \verb!savingsAccount! \\
+	Variable names  & \verb!line!, \verb!savings_account! \\
 	Named constants & \verb!MAX_ITERATIONS!, \verb!PI! \\
 	Functions       & \verb!getName()!, \verb!computeTotalWidth()! \\
 	Namespaces      & \verb!model::analyzer!, \verb!std::cout()! \\
@@ -110,7 +110,9 @@
 	% Section 3.10??
 	Private class   & \verb!private:! // Should go with underscore \\
 	members         & \verb!  int length_;! \\
-	Generic vars    & \verb!Point startPoint, endPoint;! \\
+	                & \verb!protected:! // Underscore \\
+	                & \verb!  int width_;! \\
+	Generic vars    & \verb!Point start_point, end_point;! \\
 	Method name     & \verb!line.getLength();! \\ 
 	                & \hspace{0.5cm} NOT: \verb!line.getLineLength();! \\	
 \end{tabular}
@@ -121,25 +123,23 @@
 	                & \verb!employee.setName(someName);! \\
 	                & \verb!matrix.getElement(2, 4);! \\
 	                & \verb!matrix.setElement(2, 4, value);! \\
-	                & \\
-	Term compute    & \verb!valueSet->computeAverage();! \\
+	Term compute    & \verb!value_set->computeAverage();! \\
 	                & \verb!matrix->computeInverse();! \\
 	Term find       & \verb!vertex.findNearest();! \\
 	                & \verb!matrix.findMinElement();! \\
 	Term initialize & \verb!printer.initializeFontSet();! \\
 	                & \\
-	GUI with compo- & \verb!mainWindow!, \verb!widthScale!, \verb!loginText!, \\
-	nent suffix     & \verb!leftScrollbar!, \verb!minLabel!, \verb!yesToggle! \\
+	GUI with compo- & \verb!main_window!, \verb!width_scale!, \verb!login_text!, \\
+	nent suffix     & \verb!left_scrollbar!, \verb!min_label!, \verb!yes_toggle! \\
 	                & \\
 	Plurals         & \verb!vector<Point> points;!, \verb!int values[];! \\
-	Objects number  & \verb!nPoints!, \verb!nLines! // Use n prefix\\
-	Entity number   & \verb!tableNo!, \verb!employeeNo! // Use No suffix\\
-	                & \\
-	Iterators should& \verb!for (int i=0; i < nTables); i++) {!\\ 
+	Objects number  & \verb!n_points!, \verb!n_lines! // Use n prefix\\
+	Entity number   & \verb!table_no!, \verb!employee_no! // Use No suffix\\
+	Iterators should& \verb!for (int i=0; i < n_tables); i++) {!\\ 
 	be i, j, k...   & \hspace{0.5cm} \verb!*statements*! \\
 	                & \verb!}!\\
-	is prefix for   & \verb!isSet!, \verb!isVisible!, \verb!isFinished!, \\
-	bool methods    & \verb!isFound!, \verb!isOpen! \\
+	is prefix for   & \verb!is_set!, \verb!is_visible!, \verb!is_finished!, \\
+	bool methods    & \verb!is_found!, \verb!is_open! \\
 	                & \\
 	% Section 3.27?
 	Avoid           & \verb!computeAverage();! // NOT: \verb!compAvg();! \\
@@ -149,10 +149,10 @@
 	                & \verb!PriceEarningRatio! instead of \verb!pe! \\
 	                & etc. \\
 	Avoid naming    & \verb!Line *line;! // NOT: \verb!Line *pline;! \\
-	pointers        &                    // NOT: \verb!Line *linePtr;! \\
+	pointers        &                    // NOT: \verb!Line *line_ptr;! \\
 	                & \\
-	Avoid negated   & \verb!bool isError;! // NOT: \verb!isNoError;! \\
-	bool            & \verb!bool isFound;! // NOT: \verb!isNotFound;! \\
+	Avoid negated   & \verb!bool is_error;! // NOT: \verb!is_no_error;! \\
+	bool            & \verb!bool is_found;! // NOT: \verb!is_not_found;! \\
 	                & \\
 \end{tabular} \\
 
@@ -175,12 +175,12 @@
 	Header .h and  & \verb!MyClass.cpp!, \verb!MyClass.h! \\
 	source .cpp    & API in .h, definitions in .cpp file \\
 	               & \\
-	Aligned        & \verb!totalSum = a + b + c + ! \\
+	Aligned        & \verb!total_sum = a + b + c + ! \\
 	split          & \verb!           d + e;! \\
 	               & \verb!function(param1, param2,! \\
 	               & \verb!         param3);! \\
-	               & \verb!for (int tableNo = 0; tableNo < nTables;! \\
-	               & \verb!     tableNo += tableStep)! \\
+	               & \verb!for (int table_no = 0; table_no < n_tables;! \\
+	               & \verb!     table_no += table_step)! \\
 \end{tabular}
 
 \subsection{Include files and statements}
@@ -211,8 +211,8 @@
 	              & \hspace{0.2cm} \verb!private:! \\
 	              & \verb!};! \\
 	              & \\
-	Use explicit  & \verb!floatValue = static_cast<float>(intValue);! \\
-	conversions   & NOT: \verb!floatValue = intValue;!\\
+	Use explicit  & \verb!float_value = static_cast<float>(int_value);! \\
+	conversions   & NOT: \verb!float_value = int_value;!\\
 \end{tabular}
 
 \subsection{Variables}
@@ -222,7 +222,7 @@
 	Pointers and  & \verb!float *x;! // NOT: \verb!float* x;! \\
 	references    & \verb!int &x;! // NOT: \verb!int& x;! \\
 	              & \\
-	Implicit test & \texttt{if (nLines != 0)} // NOT: \verb!if (nLines)! \\
+	Implicit test & \texttt{if (n\_lines != 0)} // NOT: \verb!if (n_lines)! \\
 	for 0         & \texttt{if (value != 0.0)} // NOT: \verb!if (value)! \\
 \end{tabular}
 
@@ -235,8 +235,8 @@
 	NOT:          & \verb!for (i = 0, sum = 0; i < 100; i++)! \\
 	              & \hspace{0.2cm} \verb!sum += value[i]! \\
 	              & \\
-	Init loop vars& \verb!isDone = false;! \\
-	just before   & \texttt{while (!isDone) \{} \\ 
+	Init loop vars& \verb!is_done = false;! \\
+	just before   & \texttt{while (!is\_done) \{} \\ 
 	loop          & \hspace{0.2cm} \verb!*statements*! \\
 	              & \verb!}! \\
 	              & \\
@@ -249,29 +249,30 @@
 \subsection{Conditionals}
 -avoid complex conditional expressions. Use temporary \verb!bool! variables instead:
 \begin{verbatim}
-	bool isFinished = (elementNo < 0) || (elementNo > maxElement);
-	bool isRepeatedEntry = elementNo == lastElement;
-	if (isFinished || isRepeatedEntry) {
+	bool is_finished = (element_no < 0) || 
+	    (element_no > max_element);
+	bool is_repeated_entry = element_no == last_element;
+	if (is_finished || is_repeated_entry) {
   	  :
 	}
 \end{verbatim}
 
 \begin{tabular}{@{}ll@{}}
-	Nominal case  & \verb!bool isOk = readFile(fileName);! \\
-	and exception & \verb!if (isOk) {! \\
+	Nominal case  & \verb!bool is_ok = readFile(file_name);! \\
+	and exception & \verb!if (is_ok) {! \\
 	              & \hspace{0.2cm} \verb!*nominal case*! \\
 	              & \verb!}! \\
 	              & \verb!else {! \\
 	              & \hspace{0.2cm} \verb!*exception*! \\
 	              & \verb!}! \\
 	              & \\
-	Allow line    & \verb!if (isDone)! // NOT: \verb!if (isDone) doCleanup();! \\
+	Allow line    & \verb!if (is_done)! // NOT: \verb!if (is_done) doCleanup();! \\
 	break         & \hspace{0.2cm} \verb!doCleanup();! \\
 	              & \\
-	Avoid         & \verb!File *fileHandle = open(fileName, "w");! \\
-	executable    & \texttt{if (!fileHandle)\{\}} \\
+	Avoid         & \verb!File *file_handle = open(file_name, "w");! \\
+	executable    & \texttt{if (!file\_handle)\{\}} \\
 	statements    & // NOT: \\
-	in conditions & \texttt{if (!(fileHandle = open(fileName, "w"))) \{\}} \\
+	in conditions & \texttt{if (!(file\_handle = open(file\_name, "w"))) \{\}} \\
 	              & \\
 \end{tabular}
 
@@ -387,28 +388,28 @@
 Matrix4x4 matrix = new Matrix4x4();
 
 double cosAngle = Math.cos(angle);
-double sinAngle = Math.sin(angle);
+double sin_angle = Math.sin(angle);
 
-matrix.setElement(1, 1,  cosAngle);
-matrix.setElement(1, 2,  sinAngle);
-matrix.setElement(2, 1, -sinAngle);
-matrix.setElement(2, 2,  cosAngle);
+matrix.setElement(1, 1,  cos_angle);
+matrix.setElement(1, 2,  sin_angle);
+matrix.setElement(2, 1, -sin_angle);
+matrix.setElement(2, 2,  cos_angle);
 
 multiply(matrix);
 
 \end{verbatim}
 
 \begin{verbatim}
-if      (a == lowValue)    compueSomething();
-else if (a == mediumValue) computeSomethingElse();
-else if (a == highValue)   computeSomethingElseYet();
+if      (a == low_value)    compueSomething();
+else if (a == medium_value) computeSomethingElse();
+else if (a == high_value)   computeSomethingElseYet();
 
-value = (potential        * oilDensity)   / constant1 +
-        (depth            * waterDensity) / constant2 +
-        (zCoordinateValue * gasDensity)   / constant3;
+value = (potential        * oil_density)   / constant1 +
+        (depth            * water_density) / constant2 +
+        (zCoordinateValue * gas_density)   / constant3;
 
-minPosition     = computeDistance(min,     x, y, z);
-averagePosition = computeDistance(average, x, y, z);
+min_position     = computeDistance(min,     x, y, z);
+average_position = computeDistance(average, x, y, z);
 
 switch (value) {
   case PHASE_OIL   : strcpy(phase, "Oil");   break;
