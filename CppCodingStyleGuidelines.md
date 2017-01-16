@@ -121,9 +121,9 @@ In the guideline sections the terms *must*, *should* and *can* have special mean
 |In general, the use of global variables should be avoided. Consider using singleton objects instead.| 
 <br>
 
-|<span style="background-color:lightblue">  11. Private class variables should have underscore suffix. </span>|
+|<span style="background-color:lightblue">  11. Private and protected class variables should have underscore suffix. </span>|
 |:------------- |
-|<pre> class SomeClass { <br>   private: <br>     int length_; <br> } </pre>|
+|<pre> class SomeClass { <br>   private: <br>     int length_; <br>   protected: <br>     int width_; <br> } </pre>|
 |Apart from its name and its type, the *scope* of a variable is its most important feature. Indicating class scope by using underscore makes it easy to distinguish class variables from local scratch variables. This is important because class variables are considered to have higher significance than method variables, and should be treated with special care by the programmer. <br> A side effect of the underscore naming convention is that it nicely resolves the problem of finding reasonable variable names for setter methods and constructors: <br> <pre>void setDepth (int depth) <br>{ <br>  depth_ = depth; <br>} </pre> An issue is whether the underscore should be added as a prefix or as a suffix. Both practices are commonly used, but the latter is recommended because it seem to best preserve the readability of the name. <br> <br> It should be noted that scope identification in variables has been a controversial issue for quite some time. It seems, though, that this practice now is gaining acceptance and that it is becoming more and more common as a convention in the professional development community.| 
 <br>
 
